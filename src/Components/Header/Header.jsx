@@ -14,9 +14,9 @@ const Header = () => {
   return (
     <>
       <div className="flex items-center mx-auto" style={{ width: "85%" }}>
-        <div className="w-full lg:flex-row sm:flex-col flex flex-wrap justify-between items-center">
+        <div className="w-full lg:flex-row flex-col flex flex-wrap justify-between items-center">
           <div
-            className="sm:w-full lg:w-max flex flex-wrap justify-between items-center lg:h-32 h-24"
+            className="w-full lg:w-max flex flex-wrap justify-between items-center lg:h-32 h-24"
             // style={{ width: "85%" }}
           >
             <a href="#" className="flex items-center">
