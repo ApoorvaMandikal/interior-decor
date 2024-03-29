@@ -9,11 +9,11 @@ const Section1 = () => {
           className="lg:w-6/12 right-0 lg:top-56 absolute h-52"
           style={{ backgroundColor: "#FAF4EF" }}
         ></div>
-        <div className="w-full md:block flex flex-wrap relative md:ml-0 ml-[25%]">
+        <div className="w-full md:block overflow-x-hidden whitespace-nowrap relative md:ml-0 ">
           <img
             src={image1}
             alt="First image"
-            className="float-end md:w-[80%] w-full"
+            className="relative right-[-25%] float-end md:w-[80%] w-full"
           ></img>
         </div>
         <div className=" box-border md:relative absolute h-auto md:ml-0 ml-[7%] md:w-[35%] w-[55%]">
