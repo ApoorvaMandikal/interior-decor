@@ -13,11 +13,11 @@ const Section1 = () => {
           <img
             src={image1}
             alt="First image"
-            className="relative right-[-25%] float-end md:w-[80%] w-full"
+            className="relative md:right-0 right-[-25%] float-end md:w-[80%] w-full"
           ></img>
         </div>
-        <div className=" box-border md:relative absolute h-auto md:ml-0 ml-[7%] md:w-[35%] w-[55%]">
-          <div className="bg-white z-10 opacity-90 w-full flex flex-col absolute md:mt-[70%] mt-[-100%] text-start">
+        <div className=" box-border absolute h-auto md:ml-0 ml-[7%] md:w-[34%] w-[55%]">
+          <div className="bg-white z-10 opacity-90 w-full flex flex-col absolute md:mt-[-80%] mt-[-100%] text-start">
             <span
               className="block font-black lg:py-12 md:py-6 py-2 md:text-[4vw] text-[7vw]"
               style={{
