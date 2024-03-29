@@ -1,29 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import sofa from "./../../assets/Images/sofa1.png";
 import lamp1 from "./../../assets/Images/lamp1.png";
+import chair1 from "./../../assets/Images/chair1.png";
+import chair2 from "./../../assets/Images/chair2.png";
+import chair3 from "./../../assets/Images/chair3.png";
+import cabinet1 from "./../../assets/Images/cabinet1.png";
+
 
 const FurnitureCards = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const containerRef = useRef(null); // Ref for the container element
+  const itemRef = useRef(null); // Ref for one of the carousel items
+  let itemWidth = 0;
 
-   const goToPreviousSlide = () => {
-    setCurrentIndex(prevIndex => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  useEffect(() => {
+    // Calculate the width of one carousel item after component has mounted
+    if (itemRef.current) {
+      itemWidth = itemRef.current.clientWidth;
+    }
+  }, []);
+
+  const handleScroll = () => {
+    // Set the scroll position when the container is scrolled
+    if (containerRef.current) {
+      const scrollLeft = containerRef.current.scrollLeft;
+      setScrollPosition(scrollLeft);
+    }
   };
 
-  const goToNextSlide = () => {
-    setCurrentIndex(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+  const calculateTranslation = (index) => {
+    // Calculate the translation for each carousel item
+    return `translateX(${index * itemWidth - scrollPosition}px)`;
   };
 
-
-  const images = [sofa,lamp1];
+  const bgColor = "#FAF4EF";
+  const items = [
+    { image: chair1, text: "Chaise Molle", price: "$18" },
+    { image: chair2, text: "Chaise Molle", price: "$18" },
+    { image: lamp1, text: "Chaise Molle", price: "$18" },
+    { image: chair3, text: "Chaise Molle", price: "$18" },
+    { image: cabinet1, text: "Chaise Molle", price: "$48" },
+    { image: sofa, text: "Chaise Molle", price: "$78" },
+  ];
 
   return (
-    <div className="container mx-auto px-4 lg:px-0">
+    <div className="container mx-auto ml-[7%] lg:px-0">
       {/* Grid layout for larger screens */}
       <div className="hidden lg:grid lg:grid-cols-3 lg:gap-4">
-        {images.map((image, index) => (
+        {items.map((item, index) => (
           <img
             key={index}
-            src={image}
+            src={item.image}
             alt={`Image ${index}`}
             className="w-full"
           />
@@ -32,24 +59,34 @@ const FurnitureCards = () => {
 
       {/* Carousel layout for smaller screens */}
       <div className="lg:hidden">
-        <div className="carousel relative">
-
-          {images.map((image, index) => (
+        <div
+          ref={containerRef}
+          className="carousel-container relative overflow-x-auto whitespace-nowrap w-full scroll-smooth"
+          onScroll={handleScroll}
+          style={{ scrollBehavior: "smooth" }}
+        >
+          {items.map((item, index) => (
             <div
+              ref={index === 0 ? itemRef : null}
               key={index}
-              className={`absolute top-0 left-0 w-full transition-opacity duration-500 ${
-                index === currentIndex ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`carousel-item w-[70%] inline-block mr-10 scroll-ml-6 mt-10 h-[100vw]`}
+              style={{ transform: calculateTranslation(index) }}
             >
-              <img src={image} alt={`Slide ${index}`} className="w-full" />
+              <div className="bg-[#FAF4EF] py-6 px-6 h-[90%] rounded-bl-[4rem]">
+                <div className="flex flex-col justify-between h-[125%]">
+                  <div className="flex flex-col text-start" style={{fontFamily: 'DM Serif Display'}}>
+                    <p className="text-3xl font-bold">{item.text}</p>
+                    <p className="text-xl">{item.price}</p>
+                  </div>
+                  <img
+                    src={item.image}
+                    alt={`Item ${index}`}
+                    className=" w-72 h-72 mb-2"
+                  />
+                </div>
+              </div>
             </div>
           ))}
-          <button className="absolute top-0 bottom-0 left-0 px-2 py-4 m-auto text-black transition-opacity duration-500 opacity-50 hover:opacity-100" onClick={goToPreviousSlide}>
-            Prev
-          </button>
-          <button className="absolute top-0 bottom-0 right-0 px-2 py-4 m-auto text-black transition-opacity duration-500 opacity-50 hover:opacity-100" onClick={goToNextSlide}>
-            Next
-          </button>
         </div>
       </div>
     </div>

@@ -12,7 +12,6 @@ const Section2 = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  
   return (
     <div className="my-7 flex flex-col items-center mx-auto md:w-[85%] w-full">
       <div className="flex lg:flex-row w-[85%] md:w-[100%] justify-between items-center mx-auto ">
@@ -42,7 +41,9 @@ const Section2 = () => {
       <div
         className={`lg:flex lg:w-auto  ${isMobileMenuOpen ? "flex" : "hidden"}`}
         id="mobile-menu"
-      ><FurnitureItems></FurnitureItems></div>
+      >
+        <FurnitureItems></FurnitureItems>
+      </div>
       <FurnitureCards></FurnitureCards>
     </div>
   );
