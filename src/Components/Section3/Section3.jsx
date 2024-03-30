@@ -35,26 +35,30 @@ const Section3 = () => {
             {items.map((item, index) => (
               <div key={index} className="carousel-item flex-shrink-0 w-full">
                 <div className="flex flex-col md:flex-row items-center">
+                  <div
+                    className="absolute w-6/12 left-[-10%] top-[10%] lg:h-52 md:h-44 h-28"
+                    style={{ backgroundColor: "#FAF4EF" }}
+                  ></div>
                   <img
                     src={item.image}
                     alt={`Item ${index}`}
-                    className="w-full md:w-[60%]"
+                    className="w-full md:w-[60%] z-10"
                   />
-                  <div className="w-[85%] text-left mr-auto md:mx-10">
+                  <div className="w-[85%] flex flex-col justify-between text-left mr-auto md:mx-10 md:h-96 h-full">
                     <p
-                      className="text-3xl font-bold my-10"
+                      className="text-3xl lg:text-6xl font-bold my-10"
                       style={{ fontFamily: "DM Serif Display" }}
                     >
                       {item.text}
                     </p>
-                    <div className="my-10 w-[21rem] text-[#737373]">
+                    <div className="my-5 w-[21rem] text-[#737373]">
                       <span className="text-xl/[30px]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         A, eleifend viverra nam libero tellus. Luctus ornare ac,
                         dolor tempor pellentesque nec.{" "}
                       </span>
                     </div>
-                    <div className="flex w-full -translate-y-1/2 opacity-50 focus:opacity-100 gap-2 ">
+                    <div className="flex my-10 w-full -translate-y-1/2 opacity-50 focus:opacity-100 gap-2 ">
                       <button
                         className="px-2 py-4 text-black bg-[#FAF4EF]"
                         onClick={handlePrevClick}
